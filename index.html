@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>待辦清單</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app" aria-label="待辦清單">
+      <header class="app-header">
+        <h1>待辦清單</h1>
+      </header>
+
+      <form id="todoForm" class="todo-form" novalidate>
+        <label class="sr-only" for="todoInput">新增待辦事項</label>
+        <input
+          id="todoInput"
+          type="text"
+          maxlength="120"
+          placeholder="新增一個待辦事項..."
+          autocomplete="off"
+        />
+        <button type="submit" class="add-btn">新增</button>
+      </form>
+
+      <ul id="todoList" class="todo-list" aria-live="polite"></ul>
+
+      <div id="emptyState" class="empty-state" aria-live="polite">
+        還沒有任何待辦事項,新增一個吧!
+      </div>
+
+      <footer class="app-footer">
+        <span id="remainingCount">未完成: 0 項</span>
+      </footer>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
