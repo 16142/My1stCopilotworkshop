@@ -10,6 +10,7 @@
     <main class="app" aria-label="待辦清單">
       <header class="app-header">
         <h1>待辦清單</h1>
+        <button id="themeToggle" class="theme-toggle" type="button"></button>
       </header>
 
       <form id="todoForm" class="todo-form" novalidate>
@@ -23,6 +24,12 @@
         />
         <button type="submit" class="add-btn">新增</button>
       </form>
+
+      <nav class="filter-bar" aria-label="待辦事項篩選">
+        <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">全部</button>
+        <button class="filter-btn" type="button" data-filter="active" aria-pressed="false">未完成</button>
+        <button class="filter-btn" type="button" data-filter="completed" aria-pressed="false">已完成</button>
+      </nav>
 
       <ul id="todoList" class="todo-list" aria-live="polite"></ul>
 

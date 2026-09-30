@@ -1,4 +1,5 @@
 :root {
+  color-scheme: light;
   --bg-color: #f3f6fb;
   --card-color: #ffffff;
   --primary-color: #4f46e5;
@@ -11,6 +12,55 @@
   --danger-soft: #fef2f2;
   --success-color: #22c55e;
   --empty-color: #9ca3af;
+  --page-gradient-start: #eef2ff;
+  --input-color: #ffffff;
+  --completed-color: #f9fafb;
+  --completed-border-color: #edf1f5;
+  --empty-bg: #fafbff;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg-color: #111827;
+  --card-color: #1f2937;
+  --primary-color: #818cf8;
+  --primary-soft: rgba(129, 140, 248, 0.2);
+  --text-color: #f3f4f6;
+  --muted-color: #a1a1aa;
+  --border-color: #374151;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --danger-color: #f87171;
+  --danger-soft: #3f2529;
+  --success-color: #4ade80;
+  --empty-color: #9ca3af;
+  --page-gradient-start: #172033;
+  --input-color: #111827;
+  --completed-color: #252f3e;
+  --completed-border-color: #374151;
+  --empty-bg: #1b2637;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --bg-color: #111827;
+    --card-color: #1f2937;
+    --primary-color: #818cf8;
+    --primary-soft: rgba(129, 140, 248, 0.2);
+    --text-color: #f3f4f6;
+    --muted-color: #a1a1aa;
+    --border-color: #374151;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --danger-color: #f87171;
+    --danger-soft: #3f2529;
+    --success-color: #4ade80;
+    --empty-color: #9ca3af;
+    --page-gradient-start: #172033;
+    --input-color: #111827;
+    --completed-color: #252f3e;
+    --completed-border-color: #374151;
+    --empty-bg: #1b2637;
+  }
 }
 
 * {
@@ -22,7 +72,7 @@ body {
   margin: 0;
   min-height: 100%;
   font-family: "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
-  background: linear-gradient(135deg, #eef2ff 0%, var(--bg-color) 100%);
+  background: linear-gradient(135deg, var(--page-gradient-start) 0%, var(--bg-color) 100%);
   color: var(--text-color);
 }
 
@@ -44,10 +94,29 @@ body {
 }
 
 .app-header h1 {
-  margin: 0 0 20px;
+  margin: 0;
   font-size: clamp(1.75rem, 3vw, 2.2rem);
-  text-align: center;
   letter-spacing: 0.04em;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.theme-toggle {
+  min-height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--card-color);
+  color: var(--text-color);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
 }
 
 .todo-form {
@@ -64,7 +133,7 @@ body {
   border-radius: 12px;
   padding: 0 14px;
   font-size: 1rem;
-  background: #fff;
+  background: var(--input-color);
   color: var(--text-color);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -93,6 +162,31 @@ body {
   transform: translateY(-1px);
 }
 
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  margin: -4px 0 18px;
+}
+
+.filter-btn {
+  min-height: 38px;
+  padding: 0 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--card-color);
+  color: var(--muted-color);
+  font: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.filter-btn.active {
+  border-color: var(--primary-color);
+  background: var(--primary-soft);
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
 .todo-list {
   list-style: none;
   margin: 0;
@@ -110,7 +204,7 @@ body {
   padding: 12px 12px 12px 14px;
   border: 1px solid var(--border-color);
   border-radius: 14px;
-  background: #fff;
+  background: var(--card-color);
   transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
@@ -139,8 +233,8 @@ body {
 }
 
 .todo-item.completed {
-  background: #f9fafb;
-  border-color: #edf1f5;
+  background: var(--completed-color);
+  border-color: var(--completed-border-color);
 }
 
 .todo-item.completed .todo-text {
@@ -171,7 +265,7 @@ body {
   border: 1px dashed var(--border-color);
   border-radius: 14px;
   color: var(--empty-color);
-  background: #fafbff;
+  background: var(--empty-bg);
 }
 
 [hidden] {
@@ -207,6 +301,11 @@ body {
 
   .todo-form {
     flex-direction: column;
+  }
+
+  .theme-toggle {
+    padding: 0 9px;
+    font-size: 0.8rem;
   }
 
   .add-btn {
