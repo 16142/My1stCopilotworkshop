@@ -87,7 +87,7 @@ function updateSummary(visibleCount) {
     } else if (currentFilter === "active") {
       emptyState.textContent = "沒有未完成的待辦事項。";
     } else if (currentFilter === "completed") {
-      emptyState.textContent = "沒有已完成的待辦事項。";
+      emptyState.textContent = "目前沒有已完成的待辦事項；未完成的項目只是被篩選隱藏，切換至「全部」或「未完成」即可查看。";
     } else {
       emptyState.textContent = "目前沒有待辦事項。";
     }
