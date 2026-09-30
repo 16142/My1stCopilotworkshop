@@ -273,12 +273,32 @@ body {
 }
 
 .app-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
   margin-top: 18px;
   padding-top: 12px;
   border-top: 1px solid var(--border-color);
   color: var(--muted-color);
   font-size: 0.95rem;
-  text-align: right;
+}
+
+.clear-completed-btn {
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--danger-soft);
+  color: var(--danger-color);
+  font: inherit;
+  cursor: pointer;
+}
+
+.clear-completed-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .sr-only {

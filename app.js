@@ -8,6 +8,7 @@ const todoInput = document.getElementById("todoInput");
 const todoList = document.getElementById("todoList");
 const emptyState = document.getElementById("emptyState");
 const remainingCount = document.getElementById("remainingCount");
+const clearCompletedBtn = document.getElementById("clearCompletedBtn");
 const themeToggle = document.getElementById("themeToggle");
 const filterBar = document.querySelector(".filter-bar");
 const filterButtons = document.querySelectorAll(".filter-btn");
@@ -78,7 +79,9 @@ function saveTasks() {
 // 更新底部未完成數量與空白狀態
 function updateSummary(visibleCount) {
   const remaining = tasks.filter((task) => !task.completed).length;
+  const completed = tasks.filter((task) => task.completed).length;
   remainingCount.textContent = `未完成: ${remaining} 項`;
+  clearCompletedBtn.disabled = completed === 0;
 
   emptyState.hidden = visibleCount > 0;
   if (visibleCount === 0) {
@@ -230,6 +233,22 @@ todoList.addEventListener("click", (event) => {
   }
 
   tasks.splice(index, 1);
+  saveTasks();
+  renderTasks();
+});
+
+clearCompletedBtn.addEventListener("click", () => {
+  if (clearCompletedBtn.disabled) {
+    return;
+  }
+
+  const confirmed = window.confirm("確定要清除所有已完成的待辦事項嗎？此操作無法復原。");
+
+  if (!confirmed) {
+    return;
+  }
+
+  tasks = tasks.filter((task) => !task.completed);
   saveTasks();
   renderTasks();
 });
